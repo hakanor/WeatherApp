@@ -39,35 +39,13 @@ class ViewController: UIViewController {
     }
     
     
-    private lazy var dayLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Today"
-        label.font = .systemFont(ofSize: 26, weight: .bold)
-        label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    
     private lazy var configuredButton: UIButton = {
-        let button = UIButton(type: .system)
+        let button = UIButton(type: .contactAdd)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.center = self.view.center
-        button.configuration = createConfig()
-        button.layer.borderColor = UIColor.systemBlue.cgColor
-        button.layer.borderWidth = 2
         button.addTarget(self, action: #selector(buttonOnClicked), for: UIControl.Event.touchUpInside)
         return button
     }()
-    
-    func createConfig() -> UIButton.Configuration{
-        var config : UIButton.Configuration = .bordered()
-        config.title = "+"
-        config.titleAlignment = .center
-        config.cornerStyle = .capsule
-        config.baseBackgroundColor = .white
-        return config
-    }
     
     @objc func buttonOnClicked(){
         print("Tapped")
@@ -79,19 +57,19 @@ class ViewController: UIViewController {
 //  MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title="Weather App"
+        
+        self.title="Today"
         view.backgroundColor = UIColor(displayP3Red: 253, green: 253, blue: 253, alpha: 1)
+        
+        guard let navigationBar = self.navigationController?.navigationBar else {return}
+        
+        navigationBar.addSubview(configuredButton)
+        configuredButton.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor,constant: -10).isActive = true
+        configuredButton.trailingAnchor.constraint(equalTo: navigationBar.trailingAnchor,constant: -20).isActive = true
         
         view.addSubview(tableView)
         configureTableView()
         
-        view.addSubview(dayLabel)
-        dayLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        dayLabel.leadingAnchor.constraint(equalTo: tableView.leadingAnchor).isActive = true
-        
-        view.addSubview(configuredButton)
-        configuredButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        configuredButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: -20).isActive = true
     }
 
 
