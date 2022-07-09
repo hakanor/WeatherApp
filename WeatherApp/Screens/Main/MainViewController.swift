@@ -68,7 +68,10 @@ class MainViewController: UIViewController {
     
     // MARK: - User Actions
     @objc func buttonOnClicked(){
-        print("Tapped")
+        let weatherObject = WeatherService()
+        weatherObject.fetchWeather(cityName: "Ankara") { responseList in
+            print(responseList)
+        }
     }
 }
 
