@@ -9,10 +9,36 @@ import UIKit
 
 class CustomTableViewCell: UITableViewCell {
     
+    private lazy var shadowLayer: UIView = {
+        let shadowLayer = UIView()
+        shadowLayer.translatesAutoresizingMaskIntoConstraints = false
+        shadowLayer.layer.masksToBounds = false
+        shadowLayer.layer.shadowOffset = CGSize(width: 0, height: 2)
+        shadowLayer.layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
+        shadowLayer.layer.shadowOpacity = 0.23
+        shadowLayer.layer.shadowRadius = 4
+        return shadowLayer
+    }()
+    
 //    TODO send object
     func set(title: String, desc: String){
         titleLabel.text=title
         locationLabel.text=desc
+    }
+    
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 6
+        return stackView
+    }()
+    
+    func configureStackView(){
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
     }
     
     private lazy var titleLabel: UILabel = {
@@ -50,7 +76,13 @@ class CustomTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
+        
+        contentView.addSubview(shadowLayer)
+        shadowLayer.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        shadowLayer.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        shadowLayer.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        shadowLayer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        
         contentView.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 20).isActive = true
