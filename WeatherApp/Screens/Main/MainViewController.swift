@@ -7,9 +7,6 @@
 
 // TODO: OpenWeatherMapAPI
 // TODO: Font?
-// TODO: Today - title ?
-// TODO: tableview cell
-// TODO: check constraints
 
 import UIKit
 
@@ -24,9 +21,8 @@ class MainViewController: UIViewController {
     }()
     
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .insetGrouped)
-        tableView.separatorStyle = .singleLine
-        tableView.backgroundColor = .systemGray6
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.separatorStyle = .none
         return tableView
     }()
     
@@ -35,7 +31,8 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         self.title="Today"
-        view.backgroundColor = UIColor(displayP3Red: 253, green: 253, blue: 253, alpha: 1)
+//     TODO:   view.backgroundColor = UIColor(red: 253, green: 253, blue: 253, alpha: 1)
+        view.backgroundColor = .white
         
         guard let navigationBar = self.navigationController?.navigationBar else {return}
         
@@ -60,13 +57,12 @@ class MainViewController: UIViewController {
     func configureTableView(){
         tableView.dataSource = self
         tableView.delegate = self
-//        tableView.rowHeight = 150
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24).isActive = true
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
@@ -78,17 +74,17 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
         5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CustomTableViewCell
         
-        cell.set(title: "Showers", desc: "Columbia Falls, MT")
+        cell.setLabels(statusLabel: "Showers", timeLabel: "10.33", degreeLabel: "30°", locationLabel: "Columbia Falls, MT")
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("indexPath: \(indexPath.row)")
     }
 }
