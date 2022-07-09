@@ -60,7 +60,7 @@ class MainViewController: UIViewController {
     func configureTableView(){
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.rowHeight = 150
+//        tableView.rowHeight = 150
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
