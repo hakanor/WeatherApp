@@ -5,10 +5,9 @@
 //  Created by Hakan Or on 5.07.2022.
 //
 
-// TODO: OpenWeatherMapAPI
-// TODO: Font?
-
 import UIKit
+
+let cities = ["Ankara", "Konya", "Istanbul", "Aydin", "Eskisehir"]
 
 class MainViewController: UIViewController {
     // MARK: - Subviews
@@ -26,12 +25,15 @@ class MainViewController: UIViewController {
         return tableView
     }()
     
+    // MARK: - Properties
+    private var weatherInfoList: [WeatherInfoResponseBody] = []
+    private let weatherService = WeatherService()
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title="Today"
-//     TODO:   view.backgroundColor = UIColor(red: 253, green: 253, blue: 253, alpha: 1)
         view.backgroundColor = .white
         
         guard let navigationBar = self.navigationController?.navigationBar else {return}
@@ -43,6 +45,12 @@ class MainViewController: UIViewController {
         view.addSubview(tableView)
         configureTableView()
         
+        cities.forEach { city in
+            weatherService.fetchWeather(cityName: city) { response in
+                self.weatherInfoList.append(response)
+                self.tableView.reloadData()
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,6 +65,8 @@ class MainViewController: UIViewController {
     func configureTableView(){
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.showsVerticalScrollIndicator = false
+        tableView.showsHorizontalScrollIndicator = false
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -75,15 +85,21 @@ class MainViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+        weatherInfoList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CustomTableViewCell
-        
-        cell.setLabels(statusLabel: "Showers", timeLabel: "10.33", degreeLabel: "30°", locationLabel: "Columbia Falls, MT")
+        let weatherInfo = weatherInfoList[indexPath.row]
+        cell.setLabels(
+            statusLabel: weatherInfo.weather.first?.description ?? "-",
+            timeLabel: "10:30",
+            degreeLabel: "\(weatherInfo.main.feelsLike)°",
+            locationLabel: weatherInfo.name
+        )
         return cell
     }
     

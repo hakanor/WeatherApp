@@ -12,17 +12,11 @@ public final class WeatherService{
     private let API_KEY = "06a36732cd5c081135f8e39496bf4100"
 }
 
-struct ResponseBody: Decodable {
-//    var coord: CoordinatesResponse
+struct WeatherInfoResponseBody: Decodable {
     var weather: [WeatherResponse]
     var main: MainResponse
     var name: String
     var wind: WindResponse
-
-//    struct CoordinatesResponse: Decodable {
-//        var lon: Double
-//        var lat: Double
-//    }
 
     struct WeatherResponse: Decodable {
         var id: Double
@@ -46,18 +40,26 @@ struct ResponseBody: Decodable {
     }
 }
 
-//extension ResponseBody.MainResponse {
-//    var feelsLike: Double { return feels_like }
-//    var tempMin: Double { return temp_min }
-//    var tempMax: Double { return temp_max }
-//}
+extension WeatherInfoResponseBody.MainResponse {
+    var feelsLike: Int {
+        return Int(feels_like - 273.15)
+    }
+    
+    var tempMin: Double {
+        return temp_min
+    }
+    
+    var tempMax: Double {
+        return temp_max
+    }
+}
 
 extension WeatherService {
     
-    func fetchWeather(cityName:String, completion: @escaping (ResponseBody) -> Void) {
+    func fetchWeather(cityName:String, completion: @escaping (WeatherInfoResponseBody) -> Void) {
         AF.request("https://api.openweathermap.org/data/2.5/weather?q=\(cityName)&appid=\(API_KEY)")
             .validate()
-            .responseDecodable(of: ResponseBody.self) { (response) in
+            .responseDecodable(of: WeatherInfoResponseBody.self) { (response) in
                 guard let responseWeather = response.value else { return }
                 completion(responseWeather)
         }
