@@ -5,6 +5,9 @@
 //  Created by Hakan Or on 5.07.2022.
 //
 
+// TODO: CoreData -> cities
+// TODO: viewDidLoad -> fetchWeather(cities)
+
 import UIKit
 
 let cities = ["Ankara", "Konya", "Istanbul", "Aydin", "Eskisehir"]
@@ -26,6 +29,7 @@ class MainViewController: UIViewController {
     }()
     
     // MARK: - Properties
+    private var receivedData: String = ""
     private var weatherInfoList: [WeatherInfoResponseBody] = []
     private let weatherService = WeatherService()
     
@@ -78,11 +82,18 @@ class MainViewController: UIViewController {
     
     // MARK: - User Actions
     @objc func buttonOnClicked(){
-        let weatherObject = WeatherService()
-        weatherObject.fetchWeather(cityName: "Ankara") { responseList in
-            print(responseList)
+        let AddCityVC = AddCityViewController()
+        AddCityVC.delegate = self
+        navigationController?.pushViewController(AddCityVC, animated: true)
+    }
+    
+    func addNewCity(city:String){
+        weatherService.fetchWeather(cityName: city) { response in
+            self.weatherInfoList.append(response)
+            self.tableView.reloadData()
         }
     }
+    
 }
 
 // MARK: - UITableViewDelegate
@@ -106,4 +117,16 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("indexPath: \(indexPath.row)")
     }
+}
+
+extension MainViewController : MyDataSendingDelegateProtocol {
+    func sendDataToFirstViewController(data: String) {
+        receivedData = data
+        let weatherService = WeatherService()
+        weatherService.fetchWeather(cityName: data) { response in
+            self.weatherInfoList.append(response)
+            self.tableView.reloadData()
+        }
+    }
+    
 }
