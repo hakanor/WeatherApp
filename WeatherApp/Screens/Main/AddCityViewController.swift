@@ -27,6 +27,7 @@ class AddCityViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.contentInset = .init(top: 20, left: 0, bottom: 20, right: 0)
         tableView.separatorStyle = .none
         return tableView
     }()
@@ -36,31 +37,37 @@ class AddCityViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        citiesList = CityUtils.allCities
         
+        title = "Add New City"
         view.backgroundColor = .white
+        
+        citiesList = CityUtils.allCities
         
         // FIXME: Shortcut
         [textField, tableView].forEach(view.addSubview)
        
         textField.borderStyle = .roundedRect
         textField.layer.applySketchShadow()
-        tableView.layer.applySketchShadow()
         
         tableView.dataSource = self
         tableView.delegate = self
         textField.delegate = self
         
-        textField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        textField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
         textField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 20).isActive = true
         textField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: -20).isActive = true
         
-        tableView.topAnchor.constraint(equalTo: textField.bottomAnchor,constant: 20).isActive = true
+        tableView.topAnchor.constraint(equalTo: textField.bottomAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: -20).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 20).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-
+        
+        view.bringSubviewToFront(textField)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+       super.viewWillAppear(animated)
+       navigationItem.largeTitleDisplayMode = .never
     }
     
     

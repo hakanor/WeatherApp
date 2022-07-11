@@ -15,6 +15,4 @@ extension Date {
         let formattedTime = String(hours) + ":" + String(minutes)
         return formattedTime
     }
-    
-    
 }

@@ -39,7 +39,10 @@ class MainViewController: UIViewController, Alertable {
         super.viewDidLoad()
         cities = UserDefaults.standard.stringArray(forKey: "cities") ?? ["error"]
         
-        self.title="Today"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationItem.largeTitleDisplayMode = .always
+        navigationItem.title="Today"
+        
         view.backgroundColor = .white
         
         let button = UIBarButtonItem(image: UIImage(systemName: "plus.circle"), style: .plain, target: self, action: #selector(self.buttonOnClicked))
@@ -86,9 +89,9 @@ class MainViewController: UIViewController, Alertable {
     
     // MARK: - User Actions
     @objc func buttonOnClicked(){
-        let AddCityVC = AddCityViewController()
-        AddCityVC.delegate = self
-        navigationController?.pushViewController(AddCityVC, animated: true)
+        let addCityVC = AddCityViewController()
+        addCityVC.delegate = self
+        navigationController?.pushViewController(addCityVC, animated: true)
     }
     
     func addNewCity(city:String){
