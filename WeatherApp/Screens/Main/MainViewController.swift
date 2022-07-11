@@ -10,7 +10,6 @@
 
 import UIKit
 
-var cities = [String]()
 
 class MainViewController: UIViewController, Alertable {
     // MARK: - Subviews
@@ -31,7 +30,9 @@ class MainViewController: UIViewController, Alertable {
     // MARK: - Properties
     private var receivedData: String = ""
     private var weatherInfoList: [WeatherInfoResponseBody] = []
+    var cities = [String]()
     private let weatherService = WeatherService()
+    
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -127,6 +128,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             cities.remove(at: indexPath.row)
             weatherInfoList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
+            UserDefaults.standard.set(cities, forKey: "cities")
             tableView.reloadData()
         }
     }
@@ -137,13 +139,16 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 extension MainViewController : MyDataSendingDelegateProtocol {
     func sendDataToFirstViewController(data: String) {
         receivedData = data
-        cities.append(data)
-        UserDefaults.standard.set(cities, forKey: "cities")
-        let weatherService = WeatherService()
-        weatherService.fetchWeather(cityName: data) { response in
-            self.weatherInfoList.append(response)
-            self.tableView.reloadData()
+        if !cities.contains(data){
+            cities.append(data)
+            let weatherService = WeatherService()
+            weatherService.fetchWeather(cityName: data) { response in
+                self.weatherInfoList.append(response)
+                self.tableView.reloadData()
+            }
         }
+        UserDefaults.standard.set(cities, forKey: "cities")
+
     }
     
 }
