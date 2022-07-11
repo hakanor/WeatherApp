@@ -12,7 +12,7 @@ extension Date {
         let today = Date()
         let hours   = (Calendar.current.component(.hour, from: today))
         let minutes = (Calendar.current.component(.minute, from: today))
-        var formattedTime = String(hours) + ":" + String(minutes)
+        let formattedTime = String(hours) + ":" + String(minutes)
         return formattedTime
     }
     
