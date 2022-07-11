@@ -7,12 +7,9 @@
 
 import UIKit
 
-var citiesList:[String] = Array()
-let originalCitiesList = ["Adana","Adiyaman","Afyon","Agri","Aksaray","Amasya","Ankara","Antalya","Ardahan","Artvin","Aydin","Balikesir","Bartin","Batman","Bayburt","Bilecik","Bingol","Bitlis","Bolu","Burdur","Bursa","Canakkale","Cankiri","Corum","Denizli","Diyarbakir","Duzce","Edirne","Elazig","Erzincan","Erzurum","Eskisehir","Gaziantep","Giresun","Gumushane","Hakkari","Hatay","Igdir","Isparta","Istanbul","Izmir","Kahramanmaras","Karabuk","Karaman","Kars","Kastamonu","Kayseri","Kilis","Kirikkale","Kirklareli","Kirsehir","Kocaeli","Konya","Kutahya","Malatya","Manisa","Mardin","Mersin","Mugla","Mus","Nevsehir","Nigde","Ordu","Osmaniye","Rize","Sakarya","Samsun","Sanliurfa","Siirt","Sinop","Sirnak","Sivas","Tekirdag","Tokat","Trabzon","Tunceli","Usak","Van","Yalova","Yozgat","Zonguldak"]
-
 class AddCityViewController: UIViewController {
     
-    var delegate: MyDataSendingDelegateProtocol? = nil
+    var delegate: MyDataSendingDelegateProtocol?
     
     // MARK: - Subviews
     private lazy var textField: UITextField = {
@@ -34,15 +31,18 @@ class AddCityViewController: UIViewController {
         return tableView
     }()
     
+    var citiesList:[String] = Array()
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        citiesList = originalCitiesList
+        citiesList = CityUtils.allCities
         
         view.backgroundColor = .white
-        view.addSubview(textField)
-        view.addSubview(tableView)
+        
+        // FIXME: Shortcut
+        [textField, tableView].forEach(view.addSubview)
        
         textField.borderStyle = .roundedRect
         textField.layer.applySketchShadow()
@@ -63,16 +63,6 @@ class AddCityViewController: UIViewController {
 
     }
     
-//    TODO: ?
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(true)
-//        self.navigationController?.navigationBar.prefersLargeTitles = false
-//    }
-//
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(true)
-//        self.navigationController?.navigationBar.prefersLargeTitles = true
-//    }
     
     // MARK: - User Actions
     @objc func sendDataAndPop(){
@@ -81,11 +71,10 @@ class AddCityViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    
     @objc func searchRecords(_ textField: UITextField) {
         citiesList.removeAll()
         if textField.text?.count != 0 {
-            for city in originalCitiesList {
+            for city in CityUtils.allCities {
                 if let cityToSearch = textField.text{
                     let range = city.lowercased().range(of: cityToSearch, options: .caseInsensitive, range: nil, locale: nil)
                     if range != nil {
@@ -94,7 +83,7 @@ class AddCityViewController: UIViewController {
                 }
             }
         } else {
-            for city in originalCitiesList {
+            for city in CityUtils.allCities {
                 citiesList.append(city)
             }
         }

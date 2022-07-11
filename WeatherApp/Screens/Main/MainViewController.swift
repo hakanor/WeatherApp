@@ -40,11 +40,8 @@ class MainViewController: UIViewController {
         self.title="Today"
         view.backgroundColor = .white
         
-        guard let navigationBar = self.navigationController?.navigationBar else {return}
-        
-        navigationBar.addSubview(configuredButton)
-        configuredButton.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor,constant: -10).isActive = true
-        configuredButton.trailingAnchor.constraint(equalTo: navigationBar.trailingAnchor,constant: -20).isActive = true
+        let button = UIBarButtonItem(image: UIImage(systemName: "plus.circle"), style: .plain, target: self, action: #selector(self.buttonOnClicked))
+        self.navigationItem.rightBarButtonItem = button
         
         view.addSubview(tableView)
         configureTableView()
@@ -55,6 +52,11 @@ class MainViewController: UIViewController {
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        configuredButton.constraints.forEach { $0.isActive = false }
+        configuredButton.removeFromSuperview()
     }
     
     override func viewWillAppear(_ animated: Bool) {
