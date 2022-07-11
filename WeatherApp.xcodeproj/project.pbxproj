@@ -15,6 +15,7 @@
 		A7847DD8287C1DB900A9DD4C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A7847DD7287C1DB900A9DD4C /* Alamofire */; };
 		A7C1868928748CCB0027D84F /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C1868828748CCB0027D84F /* WeatherService.swift */; };
 		A7F0704F287C212400A2A3A8 /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F0704E287C212400A2A3A8 /* Alertable.swift */; };
+		A7F07051287C442300A2A3A8 /* CurrentTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F07050287C442200A2A3A8 /* CurrentTime.swift */; };
 		A7FA5E8C2879C75E00E958BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FA5E8B2879C75E00E958BB /* AppDelegate.swift */; };
 		A7FA5E942879DA4700E958BB /* CALayer+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FA5E932879DA4700E958BB /* CALayer+Shadow.swift */; };
 		A7FDC38D287B1EE7000DB158 /* AddCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FDC38C287B1EE7000DB158 /* AddCityViewController.swift */; };
@@ -32,6 +33,7 @@
 		A74458552874538800EAE25C /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		A7C1868828748CCB0027D84F /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		A7F0704E287C212400A2A3A8 /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
+		A7F07050287C442200A2A3A8 /* CurrentTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTime.swift; sourceTree = "<group>"; };
 		A7FA5E8B2879C75E00E958BB /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7FA5E932879DA4700E958BB /* CALayer+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Shadow.swift"; sourceTree = "<group>"; };
 		A7FDC38C287B1EE7000DB158 /* AddCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCityViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			children = (
 				A7FA5E932879DA4700E958BB /* CALayer+Shadow.swift */,
 				A7FDC38E287B7CB4000DB158 /* LeftImage.swift */,
+				A7F07050287C442200A2A3A8 /* CurrentTime.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 				A7F0704F287C212400A2A3A8 /* Alertable.swift in Sources */,
 				A74458562874538800EAE25C /* CustomTableViewCell.swift in Sources */,
 				A7FA5E8C2879C75E00E958BB /* AppDelegate.swift in Sources */,
+				A7F07051287C442300A2A3A8 /* CurrentTime.swift in Sources */,
 				A74458442873949100EAE25C /* SceneDelegate.swift in Sources */,
 				A7FDC391287B8CE0000DB158 /* CityUtils.swift in Sources */,
 				A7FA5E942879DA4700E958BB /* CALayer+Shadow.swift in Sources */,

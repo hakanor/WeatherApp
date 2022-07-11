@@ -98,26 +98,7 @@ extension AddCityViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder();
         return true;
-    }
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        print("TextField did begin editing method called")
-    }
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        print("TextField did end editing method called")
-    }
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        print("TextField should begin editing method called")
-        return true;
-    }
-    func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        print("TextField should clear method called")
-        return true;
-    }
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        print("TextField should end editing method called")
-        return true;
-    }
-    
+    }    
 }
 
 

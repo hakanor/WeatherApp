@@ -10,7 +10,7 @@
 
 import UIKit
 
-let cities = ["Ankara", "Konya", "Istanbul", "Aydin", "Eskisehir"]
+var cities = [String]()
 
 class MainViewController: UIViewController, Alertable {
     // MARK: - Subviews
@@ -36,6 +36,7 @@ class MainViewController: UIViewController, Alertable {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        cities = UserDefaults.standard.stringArray(forKey: "cities") ?? ["error"]
         
         self.title="Today"
         view.backgroundColor = .white
@@ -107,9 +108,10 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CustomTableViewCell
         let weatherInfo = weatherInfoList[indexPath.row]
+        let date = Date()
         cell.setLabels(
             statusLabel: weatherInfo.weather.first?.description ?? "-",
-            timeLabel: "10:30",
+            timeLabel: date.getCurrentTime(),
             degreeLabel: "\(weatherInfo.main.feelsLike)°",
             locationLabel: weatherInfo.name
         )
@@ -119,11 +121,14 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("indexPath: \(indexPath.row)")
     }
+    
 }
 
 extension MainViewController : MyDataSendingDelegateProtocol {
     func sendDataToFirstViewController(data: String) {
         receivedData = data
+        cities.append(data)
+        UserDefaults.standard.set(cities, forKey: "cities")
         let weatherService = WeatherService()
         weatherService.fetchWeather(cityName: data) { response in
             self.weatherInfoList.append(response)
