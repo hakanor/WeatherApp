@@ -12,7 +12,7 @@ import UIKit
 
 let cities = ["Ankara", "Konya", "Istanbul", "Aydin", "Eskisehir"]
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, Alertable {
     // MARK: - Subviews
     private lazy var configuredButton: UIButton = {
         let button = UIButton(type: .contactAdd)

@@ -65,9 +65,9 @@ class AddCityViewController: UIViewController {
     
     
     // MARK: - User Actions
-    @objc func sendDataAndPop(){
-        let dataToBeSent = self.textField.text
-        self.delegate?.sendDataToFirstViewController(data: dataToBeSent ?? "null")
+    @objc func sendDataAndPop(data:String){
+        let dataToBeSent = data
+        self.delegate?.sendDataToFirstViewController(data: dataToBeSent )
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -134,7 +134,7 @@ extension AddCityViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        sendDataAndPop()
+        sendDataAndPop(data: citiesList[indexPath.row])
     }
 }
 

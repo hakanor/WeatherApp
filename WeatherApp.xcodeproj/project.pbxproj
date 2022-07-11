@@ -14,6 +14,7 @@
 		A74458562874538800EAE25C /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74458552874538800EAE25C /* CustomTableViewCell.swift */; };
 		A7847DD8287C1DB900A9DD4C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A7847DD7287C1DB900A9DD4C /* Alamofire */; };
 		A7C1868928748CCB0027D84F /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C1868828748CCB0027D84F /* WeatherService.swift */; };
+		A7F0704F287C212400A2A3A8 /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F0704E287C212400A2A3A8 /* Alertable.swift */; };
 		A7FA5E8C2879C75E00E958BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FA5E8B2879C75E00E958BB /* AppDelegate.swift */; };
 		A7FA5E942879DA4700E958BB /* CALayer+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FA5E932879DA4700E958BB /* CALayer+Shadow.swift */; };
 		A7FDC38D287B1EE7000DB158 /* AddCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FDC38C287B1EE7000DB158 /* AddCityViewController.swift */; };
@@ -30,6 +31,7 @@
 		A744584F2873949800EAE25C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A74458552874538800EAE25C /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		A7C1868828748CCB0027D84F /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
+		A7F0704E287C212400A2A3A8 /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
 		A7FA5E8B2879C75E00E958BB /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7FA5E932879DA4700E958BB /* CALayer+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Shadow.swift"; sourceTree = "<group>"; };
 		A7FDC38C287B1EE7000DB158 /* AddCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCityViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			children = (
 				A7C1868828748CCB0027D84F /* WeatherService.swift */,
 				A7FDC390287B8CE0000DB158 /* CityUtils.swift */,
+				A7F0704E287C212400A2A3A8 /* Alertable.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -180,7 +183,7 @@
 			);
 			mainGroup = A74458352873949100EAE25C;
 			packageReferences = (
-				A7847DD6287C1DB900A9DD4C /* XCRemoteSwiftPackageReference "Alamofire.git" */,
+				A7847DD6287C1DB900A9DD4C /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = A744583F2873949100EAE25C /* Products */;
 			projectDirPath = "";
@@ -212,6 +215,7 @@
 				A7C1868928748CCB0027D84F /* WeatherService.swift in Sources */,
 				A7FDC38D287B1EE7000DB158 /* AddCityViewController.swift in Sources */,
 				A74458462873949100EAE25C /* MainViewController.swift in Sources */,
+				A7F0704F287C212400A2A3A8 /* Alertable.swift in Sources */,
 				A74458562874538800EAE25C /* CustomTableViewCell.swift in Sources */,
 				A7FA5E8C2879C75E00E958BB /* AppDelegate.swift in Sources */,
 				A74458442873949100EAE25C /* SceneDelegate.swift in Sources */,
@@ -424,7 +428,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A7847DD6287C1DB900A9DD4C /* XCRemoteSwiftPackageReference "Alamofire.git" */ = {
+		A7847DD6287C1DB900A9DD4C /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -437,7 +441,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		A7847DD7287C1DB900A9DD4C /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A7847DD6287C1DB900A9DD4C /* XCRemoteSwiftPackageReference "Alamofire.git" */;
+			package = A7847DD6287C1DB900A9DD4C /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
