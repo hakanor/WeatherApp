@@ -13,6 +13,7 @@ class ForecastViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.separatorStyle = .none
+        tableView.backgroundColor = .red
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -66,16 +67,19 @@ extension ForecastViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.section == 0) && indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "headercell") as! ForecastHeaderCell
+            cell.backgroundColor = .clear
             cell.setLabels(statusLabel: "Showers", degreeLabel: "36°")
                 return cell
             }
         
         if (indexPath.section == 1) && indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "collectioncell") as! ForecastCollectionView
+            cell.backgroundColor = .clear
                 return cell
             }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CustomTableViewCell
+        cell.backgroundColor = .clear
         cell.setLabels(statusLabel: String(indexPath.section), timeLabel: "s", degreeLabel: "s", locationLabel: "s")
         return cell
     }

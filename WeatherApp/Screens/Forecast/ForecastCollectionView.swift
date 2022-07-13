@@ -21,7 +21,7 @@ class ForecastCollectionView : UITableViewCell {
     private lazy var dayLabel: UILabel = {
         let label = UILabel()
         label.text = "Sunday"
-        label.font = .systemFont(ofSize: 14, weight: .bold)
+        label.font = .systemFont(ofSize: 14, weight: .heavy)
         label.textColor = .systemGray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -46,13 +46,13 @@ class ForecastCollectionView : UITableViewCell {
     }()
     
     private lazy var collectionView: UICollectionView = {
-        
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 70, height: 100)
         layout.scrollDirection = .horizontal
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "collectioncell")
+        collectionView.backgroundColor = .clear
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
@@ -85,12 +85,9 @@ class ForecastCollectionView : UITableViewCell {
         degreeLabel.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
         degreeLabel.trailingAnchor.constraint(equalTo: feelsLikeLabel.leadingAnchor,constant: -10).isActive = true
         
-        
-        // TODO: What is the difference btw frame and bounds?
-        
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "collectioncell")
+        collectionView.register(ForecastCollectionViewCell.self, forCellWithReuseIdentifier: ForecastCollectionViewCell.identifier)
     }
     
     required init?(coder: NSCoder) {
@@ -101,21 +98,14 @@ class ForecastCollectionView : UITableViewCell {
         super.layoutSubviews()
         collectionView.frame = contentView.bounds
     }
-    
-    
-    // MARK: - Configuration
-    
-    // MARK: - Setup
-
-
-    
+        
 }
 
 // MARK: - UICollectionView Delegate , DataSource
 extension ForecastCollectionView: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectioncell", for: indexPath)
-        cell.backgroundColor = .systemBlue
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ForecastCollectionViewCell.identifier, for: indexPath) as! ForecastCollectionViewCell
+        cell.setCollectionViewCellLabels(timeLabel: "2.am", icon: "sun.max", degreeLabel: "33", index: indexPath.row)
         return cell
     }
     
