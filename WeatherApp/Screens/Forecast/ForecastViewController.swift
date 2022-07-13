@@ -20,11 +20,14 @@ class ForecastViewController: UIViewController {
     
     // MARK: - Properties
     var city="";
+    var forecastInfoList: ForecastInfoResponseBody?
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         title=city
+        fetchForecastBody()
+        
         view.backgroundColor = UIColor(red: 0.97, green: 0.97, blue: 0.97, alpha: 1.00)
         view.addSubview(tableView)
         configureTableView()
@@ -42,11 +45,18 @@ class ForecastViewController: UIViewController {
         tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24).isActive = true
-        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.register(ForecastHeaderCell.self, forCellReuseIdentifier: "headercell")
         tableView.register(ForecastCollectionView.self, forCellReuseIdentifier: "collectioncell")
+        tableView.register(ForecastFooterCell.self, forCellReuseIdentifier: ForecastFooterCell.identifier)
     }
     // MARK: - User Actions
+    func fetchForecastBody() {
+        let service = ForecastService()
+        service.fetchForecast(cityName: self.city) { response in
+            self.forecastInfoList = response
+            self.tableView.reloadData()
+        }
+    }
 }
 
 // MARK: - UITableViewDelegate
@@ -68,7 +78,10 @@ extension ForecastViewController: UITableViewDelegate, UITableViewDataSource {
         if (indexPath.section == 0) && indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "headercell") as! ForecastHeaderCell
             cell.backgroundColor = .clear
-            cell.setLabels(statusLabel: "Showers", degreeLabel: "36°")
+            let statusText = forecastInfoList?.list.first?.weather.first?.description ?? "-"
+            let degreeText = forecastInfoList?.list.first?.main.tempC ?? 0
+    
+            cell.setLabels(statusLabel: statusText, degreeLabel: String(degreeText))
                 return cell
             }
         
@@ -78,9 +91,9 @@ extension ForecastViewController: UITableViewDelegate, UITableViewDataSource {
                 return cell
             }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CustomTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: ForecastFooterCell.identifier) as! ForecastFooterCell
+        cell.setFooterCellLabels(day: "Monday", icon: "sun.max", feelsLike: "33", temp: "34")
         cell.backgroundColor = .clear
-        cell.setLabels(statusLabel: String(indexPath.section), timeLabel: "s", degreeLabel: "s", locationLabel: "s")
         return cell
     }
     
@@ -89,12 +102,13 @@ extension ForecastViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+//        forecastInfoList == nil ? 0 : 3
+        3
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if (indexPath.section == 1) && indexPath.row == 0 {
-            return 140
+            return 160
         }
         
         return UITableView.automaticDimension

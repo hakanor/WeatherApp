@@ -8,6 +8,7 @@
 import UIKit
 
 class ForecastHeaderCell: UITableViewCell {
+    var gelendeger = ""
     
     // MARK: - Subviews
     private lazy var containerView: UIView = {

@@ -5,9 +5,6 @@
 //  Created by Hakan Or on 5.07.2022.
 //
 
-// TODO: CoreData -> cities
-// TODO: viewDidLoad -> fetchWeather(cities)
-
 import UIKit
 
 let refreshControl = UIRefreshControl()
