@@ -69,10 +69,10 @@ class ForecastCollectionView : UITableViewCell {
         
         containerView.addSubview(dayLabel)
         dayLabel.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
-        dayLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
+        dayLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor,constant: 5).isActive = true
         
         containerView.addSubview(collectionView)
-        collectionView.topAnchor.constraint(equalTo: dayLabel.bottomAnchor).isActive = true
+        collectionView.topAnchor.constraint(equalTo: dayLabel.bottomAnchor,constant: 10).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true

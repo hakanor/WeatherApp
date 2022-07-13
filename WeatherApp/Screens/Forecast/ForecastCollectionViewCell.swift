@@ -55,7 +55,7 @@ class ForecastCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(containerView)
         containerView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-        containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 5).isActive = true
         containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         
         containerView.addSubview(timeLabel)
