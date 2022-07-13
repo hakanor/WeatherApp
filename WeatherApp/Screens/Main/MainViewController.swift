@@ -10,6 +10,8 @@
 
 import UIKit
 
+let refreshControl = UIRefreshControl()
+
 
 class MainViewController: UIViewController, Alertable {
     // MARK: - Subviews
@@ -43,6 +45,12 @@ class MainViewController: UIViewController, Alertable {
         navigationController?.navigationItem.largeTitleDisplayMode = .always
         navigationItem.title="Today"
         
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        tableView.addSubview(refreshControl)
+        refreshControl.endRefreshing()
+        
         view.backgroundColor = .white
         
         let button = UIBarButtonItem(image: UIImage(systemName: "plus.circle"), style: .plain, target: self, action: #selector(self.buttonOnClicked))
@@ -70,6 +78,13 @@ class MainViewController: UIViewController, Alertable {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+    }
+    @objc func refresh(_ sender: AnyObject) {
+        for city in cities {
+            weatherInfoList.removeAll()
+            addNewCity(city: city)
+        }
+        refreshControl.endRefreshing()
     }
     
     // MARK: - Setup
@@ -123,7 +138,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("indexPath: \(indexPath.row)")
+        let foreCastVC = ForecastViewController()
+        foreCastVC.city = cities[indexPath.row]
+        navigationController?.pushViewController(foreCastVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
