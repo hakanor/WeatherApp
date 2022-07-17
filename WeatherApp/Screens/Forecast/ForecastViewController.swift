@@ -75,30 +75,50 @@ extension ForecastViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // HEADER CELL
         if (indexPath.section == 0) && indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "headercell") as! ForecastHeaderCell
             cell.backgroundColor = .clear
             let statusText = forecastInfoList?.list.first?.weather.first?.description ?? "-"
-            let degreeText = forecastInfoList?.list.first?.main.tempC ?? 0
+            let degreeText = String(forecastInfoList?.list.first?.main.tempC ?? 0) + "°"
     
             cell.setLabels(statusLabel: statusText, degreeLabel: String(degreeText))
                 return cell
             }
         
+        // COLLECTION CELL
         if (indexPath.section == 1) && indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "collectioncell") as! ForecastCollectionView
+            cell.forecastInfo = self.forecastInfoList
+            cell.setInfoBody(body: self.forecastInfoList)
+            
+            var dayText = forecastInfoList?.list.first?.dt_txt ?? ""
+            dayText = dayText.dayFormatter(comingDayText: dayText)
+            let feelsLikeText = String(forecastInfoList?.list.first?.main.feelsLike ?? 0) + "°"
+            let tempText = String(forecastInfoList?.list.first?.main.tempC ?? 0) + "°"
+            
+            cell.setForecastCollectionViewLabels(
+                day: dayText,
+                feelsLike: feelsLikeText,
+                temp: tempText
+            )
+            
             cell.backgroundColor = .clear
                 return cell
             }
         
+        // FOOTER CELL
         let cell = tableView.dequeueReusableCell(withIdentifier: ForecastFooterCell.identifier) as! ForecastFooterCell
-        cell.setFooterCellLabels(day: "Monday", icon: "sun.max", feelsLike: "33", temp: "34")
+        
+        var dayText = forecastInfoList?.list[(indexPath.row) * 5].dt_txt ?? ""
+        dayText = dayText.dayFormatter(comingDayText: dayText)
+        let feelsLikeText = String(forecastInfoList?.list[(indexPath.row) * 5].main.feelsLike ?? 0) + "°"
+        let tempText = String(forecastInfoList?.list[(indexPath.row) * 5].main.tempC ?? 0) + "°"
+        let icon = String(forecastInfoList?.list[(indexPath.row) * 5].weather.first?.icon ?? "sun.max")
+        
+        cell.setFooterCellLabels(day: dayText, iconName: icon, feelsLike: feelsLikeText, temp: tempText)
         cell.backgroundColor = .clear
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

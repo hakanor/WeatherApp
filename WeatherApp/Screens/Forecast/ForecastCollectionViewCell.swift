@@ -15,7 +15,6 @@ class ForecastCollectionViewCell: UICollectionViewCell {
     private lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(red: 0.97, green: 0.97, blue: 0.97, alpha: 1.00)
-    
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -34,6 +33,7 @@ class ForecastCollectionViewCell: UICollectionViewCell {
         var image = UIImage(systemName: "sun.max")
         icon.image = image
         icon.tintColor = .black
+        icon.contentMode = .scaleAspectFit
         icon.translatesAutoresizingMaskIntoConstraints = false
         return icon
     }()
@@ -63,11 +63,12 @@ class ForecastCollectionViewCell: UICollectionViewCell {
         timeLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         
         containerView.addSubview(icon)
-        icon.topAnchor.constraint(equalTo: timeLabel.bottomAnchor,constant: 10).isActive = true
+        icon.topAnchor.constraint(equalTo: timeLabel.bottomAnchor).isActive = true
         icon.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        icon.heightAnchor.constraint(lessThanOrEqualTo: contentView.heightAnchor, multiplier: 0.4).isActive = true
         
         containerView.addSubview(degreeLabel)
-        degreeLabel.topAnchor.constraint(equalTo: icon.bottomAnchor,constant: 10).isActive = true
+        degreeLabel.topAnchor.constraint(equalTo: icon.bottomAnchor).isActive = true
         degreeLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         degreeLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: -10).isActive = true
         
@@ -88,9 +89,10 @@ class ForecastCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Configuration
-    func setCollectionViewCellLabels(timeLabel: String, icon: String, degreeLabel: String, index: Int){
+    func setCollectionViewCellLabels(timeLabel: String, iconName: String, degreeLabel: String, index: Int){
         self.timeLabel.text = timeLabel
-        self.icon.image = UIImage(systemName: icon)
+        let url = "https://openweathermap.org/img/wn/\(iconName)@2x.png"
+        self.icon.imageFromUrl(from: url)
         self.degreeLabel.text = degreeLabel
         self.index = index
     }

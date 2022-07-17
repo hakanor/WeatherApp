@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A73F8B542883205B0038F31B /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73F8B532883205B0038F31B /* DateFormatter.swift */; };
 		A74458442873949100EAE25C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74458432873949100EAE25C /* SceneDelegate.swift */; };
 		A74458462873949100EAE25C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74458452873949100EAE25C /* MainViewController.swift */; };
 		A744584B2873949800EAE25C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A744584A2873949800EAE25C /* Assets.xcassets */; };
 		A744584E2873949800EAE25C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A744584C2873949800EAE25C /* LaunchScreen.storyboard */; };
 		A74458562874538800EAE25C /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74458552874538800EAE25C /* CustomTableViewCell.swift */; };
 		A7847DD8287C1DB900A9DD4C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A7847DD7287C1DB900A9DD4C /* Alamofire */; };
+		A7ABD13E288362F5003D6915 /* UIImageView+Url.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ABD13D288362F5003D6915 /* UIImageView+Url.swift */; };
 		A7B59F96287EC5AA007540B5 /* ForecastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B59F95287EC5AA007540B5 /* ForecastCollectionViewCell.swift */; };
 		A7B59F98287EF49A007540B5 /* ForecastService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B59F97287EF499007540B5 /* ForecastService.swift */; };
 		A7B59F9A287F3113007540B5 /* ForecastFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B59F99287F3113007540B5 /* ForecastFooterCell.swift */; };
@@ -31,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A73F8B532883205B0038F31B /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		A744583E2873949100EAE25C /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A74458432873949100EAE25C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A74458452873949100EAE25C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -38,6 +41,7 @@
 		A744584D2873949800EAE25C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A744584F2873949800EAE25C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A74458552874538800EAE25C /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		A7ABD13D288362F5003D6915 /* UIImageView+Url.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Url.swift"; sourceTree = "<group>"; };
 		A7B59F95287EC5AA007540B5 /* ForecastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastCollectionViewCell.swift; sourceTree = "<group>"; };
 		A7B59F97287EF499007540B5 /* ForecastService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastService.swift; sourceTree = "<group>"; };
 		A7B59F99287F3113007540B5 /* ForecastFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastFooterCell.swift; sourceTree = "<group>"; };
@@ -163,6 +167,8 @@
 				A7FDC38E287B7CB4000DB158 /* LeftImage.swift */,
 				A7F07050287C442200A2A3A8 /* CurrentTime.swift */,
 				A7F07059287DBD8F00A2A3A8 /* AttributedString+Color.swift */,
+				A73F8B532883205B0038F31B /* DateFormatter.swift */,
+				A7ABD13D288362F5003D6915 /* UIImageView+Url.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -248,10 +254,12 @@
 				A7B59F96287EC5AA007540B5 /* ForecastCollectionViewCell.swift in Sources */,
 				A7C1868928748CCB0027D84F /* WeatherService.swift in Sources */,
 				A7FDC38D287B1EE7000DB158 /* AddCityViewController.swift in Sources */,
+				A73F8B542883205B0038F31B /* DateFormatter.swift in Sources */,
 				A7B59F9A287F3113007540B5 /* ForecastFooterCell.swift in Sources */,
 				A74458462873949100EAE25C /* MainViewController.swift in Sources */,
 				A7B59F98287EF49A007540B5 /* ForecastService.swift in Sources */,
 				A7F0705A287DBD8F00A2A3A8 /* AttributedString+Color.swift in Sources */,
+				A7ABD13E288362F5003D6915 /* UIImageView+Url.swift in Sources */,
 				A7F0704F287C212400A2A3A8 /* Alertable.swift in Sources */,
 				A7F07058287DBD2A00A2A3A8 /* ForecastCollectionView.swift in Sources */,
 				A7F07053287D821500A2A3A8 /* ForecastViewController.swift in Sources */,
@@ -399,6 +407,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RZB5WTQ7UH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherApp/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -425,6 +434,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RZB5WTQ7UH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherApp/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

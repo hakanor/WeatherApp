@@ -19,6 +19,7 @@ struct ForecastInfoResponseBody: Codable {
 struct ForecastInfoDaily: Codable {
     let weather: [ForecastInfoWeather]
     var main : MainResponse
+    var dt_txt : String?
     
     struct MainResponse: Codable {
         var temp: Double

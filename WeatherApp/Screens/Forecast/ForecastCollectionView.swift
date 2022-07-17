@@ -9,6 +9,8 @@ import UIKit
 
 class ForecastCollectionView : UITableViewCell {
     
+    var forecastInfo: ForecastInfoResponseBody?
+    
     // MARK: - Subviews
     private lazy var containerView: UIView = {
         let view = UIView()
@@ -87,6 +89,8 @@ class ForecastCollectionView : UITableViewCell {
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(ForecastCollectionViewCell.self, forCellWithReuseIdentifier: ForecastCollectionViewCell.identifier)
     }
     
@@ -98,6 +102,18 @@ class ForecastCollectionView : UITableViewCell {
         super.layoutSubviews()
         collectionView.frame = contentView.bounds
     }
+    
+    // MARK: - Configuration
+    func setForecastCollectionViewLabels(day:String, feelsLike:String, temp:String){
+        dayLabel.text = day
+        feelsLikeLabel.text = feelsLike
+        degreeLabel.text = temp
+    }
+    
+    func setInfoBody(body : ForecastInfoResponseBody?){
+        self.forecastInfo = body
+        collectionView.reloadData()
+    }
         
 }
 
@@ -105,7 +121,17 @@ class ForecastCollectionView : UITableViewCell {
 extension ForecastCollectionView: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ForecastCollectionViewCell.identifier, for: indexPath) as! ForecastCollectionViewCell
-        cell.setCollectionViewCellLabels(timeLabel: "2.am", icon: "sun.max", degreeLabel: "33", index: indexPath.row)
+        var timeText = forecastInfo?.list[indexPath.row].dt_txt ?? "-"
+        let degreeText = String(forecastInfo?.list[indexPath.row].main.tempC ?? 0) + "°"
+        timeText = timeText.timeFormatter(comingDayText: timeText)
+        let icon = String(forecastInfo?.list[(indexPath.row)].weather.first?.icon ?? "sun.max")
+        
+        cell.setCollectionViewCellLabels(
+            timeLabel: timeText,
+            iconName: icon,
+            degreeLabel: degreeText,
+            index: indexPath.row
+        )
         return cell
     }
     

@@ -36,19 +36,19 @@ class ForecastFooterCell: UITableViewCell {
         return icon
     }()
     
-    private lazy var feelsLikeLabel: UILabel = {
+    private lazy var tempLabel: UILabel = {
         let label = UILabel()
         label.text = "33"
-        label.font = .systemFont(ofSize: 16, weight: .heavy)
+        label.font = .monospacedSystemFont(ofSize: 16, weight: .heavy)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private lazy var tempLabel: UILabel = {
+    private lazy var feelsLikeLabel: UILabel = {
         let label = UILabel()
         label.text = "34"
-        label.font = .systemFont(ofSize: 16, weight: .regular)
+        label.font = .monospacedSystemFont(ofSize: 16, weight: .regular)
         label.textColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -78,15 +78,15 @@ class ForecastFooterCell: UITableViewCell {
 
         icon.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
         icon.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
-        icon.trailingAnchor.constraint(equalTo: feelsLikeLabel.leadingAnchor,constant: -20).isActive = true
+        icon.trailingAnchor.constraint(equalTo: tempLabel.leadingAnchor,constant: -20).isActive = true
         
-        feelsLikeLabel.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
-        feelsLikeLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
-        feelsLikeLabel.trailingAnchor.constraint(equalTo: tempLabel.leadingAnchor, constant: -20).isActive = true
-
         tempLabel.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
         tempLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
-        tempLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20).isActive = true
+        tempLabel.trailingAnchor.constraint(equalTo: feelsLikeLabel.leadingAnchor, constant: -20).isActive = true
+
+        feelsLikeLabel.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
+        feelsLikeLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
+        feelsLikeLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
 
 
     }
@@ -97,10 +97,10 @@ class ForecastFooterCell: UITableViewCell {
     
     
     // MARK: - Configuration
-    func setFooterCellLabels(day:String, icon:String, feelsLike:String, temp:String){
+    func setFooterCellLabels(day:String, iconName:String, feelsLike:String, temp:String){
         dayLabel.text = day
-        let image = UIImage(systemName: icon)
-        self.icon.image = image
+        let url = "https://openweathermap.org/img/wn/\(iconName)@2x.png"
+        self.icon.imageFromUrl(from: url)
         feelsLikeLabel.text = feelsLike
         tempLabel.text = temp
     }

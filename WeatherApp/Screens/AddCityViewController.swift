@@ -43,7 +43,6 @@ class AddCityViewController: UIViewController {
         
         citiesList = CityUtils.allCities
         
-        // FIXME: Shortcut
         [textField, tableView].forEach(view.addSubview)
        
         textField.borderStyle = .roundedRect
@@ -101,7 +100,6 @@ class AddCityViewController: UIViewController {
 
 // MARK: - UITextFieldDelegate
 extension AddCityViewController: UITextFieldDelegate {
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder();
         return true;

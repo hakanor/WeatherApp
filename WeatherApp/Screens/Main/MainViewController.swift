@@ -161,11 +161,10 @@ extension MainViewController : MyDataSendingDelegateProtocol {
             let weatherService = WeatherService()
             weatherService.fetchWeather(cityName: data) { response in
                 self.weatherInfoList.append(response)
+                UserDefaults.standard.set(self.cities, forKey: "cities")
                 self.tableView.reloadData()
             }
         }
-        UserDefaults.standard.set(cities, forKey: "cities")
-
     }
     
 }
