@@ -78,14 +78,9 @@ class ForecastCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        containerView.layer.cornerRadius = 16
-        if(index == 0){
-            containerView.layer.applySketchShadow()
-            self.timeLabel.textColor = .systemBlue
-            containerView.backgroundColor = .white
-        }
+    override func prepareForReuse() {
+        self.timeLabel.textColor = .systemGray
+        containerView.backgroundColor = .clear
     }
     
     // MARK: - Configuration
@@ -95,6 +90,13 @@ class ForecastCollectionViewCell: UICollectionViewCell {
         self.icon.imageFromUrl(from: url)
         self.degreeLabel.text = degreeLabel
         self.index = index
+        
+        containerView.layer.cornerRadius = 16
+        if(index == 0){
+            containerView.layer.applySketchShadow()
+            self.timeLabel.textColor = .systemBlue
+            containerView.backgroundColor = .white
+        }
     }
     
 }

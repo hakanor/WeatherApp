@@ -79,14 +79,20 @@ class ForecastFooterCell: UITableViewCell {
         icon.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
         icon.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
         icon.trailingAnchor.constraint(equalTo: tempLabel.leadingAnchor,constant: -20).isActive = true
+        icon.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        icon.widthAnchor.constraint(equalToConstant: 20).isActive = true
         
         tempLabel.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
         tempLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
         tempLabel.trailingAnchor.constraint(equalTo: feelsLikeLabel.leadingAnchor, constant: -20).isActive = true
+        tempLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        tempLabel.widthAnchor.constraint(equalToConstant: 30).isActive = true
 
         feelsLikeLabel.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
         feelsLikeLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
         feelsLikeLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
+        feelsLikeLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        feelsLikeLabel.widthAnchor.constraint(equalToConstant: 30).isActive = true
 
 
     }
